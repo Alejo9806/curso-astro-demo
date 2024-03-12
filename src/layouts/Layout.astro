@@ -1,0 +1,26 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Counter from "../components/Counter.jsx";
+// la etiqueta <slot/> Es como el children en React
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = '', description = '' } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body class="bg-gray-900 min-h-screen pb-32">
+    <!-- Astro no genera los componentes dinamicos si queremos que sea funcional el componente debemos agregarle client:visible -->
+    <Counter client:visible transition:persist/>
+    <Header />
+    <main><slot /></main>
+  </body>
+</html>

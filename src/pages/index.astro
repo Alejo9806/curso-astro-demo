@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Launches from '../components/Launches.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+
+// Los guiones --- es donde va el javascript luego es el html
+
+// Los estilos tienen scope por componente solo se aplican a ese componente
+---
+
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+    <Launches/>
+</Layout>

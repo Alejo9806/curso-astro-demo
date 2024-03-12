@@ -1,0 +1,30 @@
+---
+import Layaout from "../../layouts/Layout.astro";
+import { type Doc } from "../../types/api";
+import { getLatestLaunches, getLaunchById } from "../../services/spacex";
+const { id } = Astro.params;
+
+let launch: Doc | null = null;
+if (id) {
+  launch = await getLaunchById(id);
+}
+
+//generar las rutas estaticas
+
+// export async function getStaticPaths() {
+//   // Llamar una API para obtener las ids que se deben generar
+//     const launches = await getLatestLaunches();
+
+//   return launches.map((launch) => ({
+//     params: { id: launch.id },
+//   }));
+// }
+---
+
+<Layaout>
+    <article>
+        <img class="w-52 h-auto" src={launch?.links.patch.small} alt={launch?.name}>
+        <h2 class="text-4xl text-white font-bold">Launch #{launch?.flight_number}</h2>
+        <p class="text-lg">{launch?.details}</p>
+    </article>
+</Layaout>
